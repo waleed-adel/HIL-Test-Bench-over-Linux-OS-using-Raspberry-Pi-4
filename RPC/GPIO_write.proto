@@ -1,0 +1,119 @@
+
+syntax = "proto3";
+
+/* GPIO messages */
+message ModeInputParams
+{
+	uint32 gpio_pin = 1;
+	uint32 gpio_mode = 2;
+}
+
+message SetInputParams
+{
+	uint32 gpio_pin = 1;
+	uint32 gpio_level = 2;
+}
+
+message PinNumber
+{
+	uint32 gpio_pin =1;
+}
+
+message GPIO_Level
+{
+	uint32 gpio_pin_level =1;
+}
+
+message GPIO_PUD
+{
+	uint32 gpio_pin = 1;
+	uint32 gpio_pud =2;
+}
+
+/* PWM messages */
+message PWM_params
+{
+	uint32 gpio_pin = 1;
+	uint32 PWMfreq = 2;
+	uint32 PWMduty = 3;
+}
+
+message PWM_Status
+{
+	int32 PWM_return = 1;
+}
+
+message Empty{}
+
+
+/* Serial messages */
+message SerialOpenParams
+{
+	string tty = 1;
+	int32 baud = 2;
+	int32 ser_flags = 3;
+}
+
+message SerialHandleMessage
+{
+	int32 SerialHandle = 1;
+}
+
+message SerialByte
+{
+	int32 ReadByte = 1;
+}
+
+message SerialWriteByteParams
+{
+	int32 handle = 1;
+	int32 byte_val = 2;
+}
+
+message SerialWriteParams
+{
+	int32 handle = 1;
+	bytes data = 2;
+}
+
+message NumberofBytes
+{
+	int32 NumofBytes = 1;
+}
+
+message PWM_Pin
+{
+	uint32 pwm_pin = 1 ;
+}
+
+message Reading
+{
+	uint32 reading = 1 ;
+}
+
+service PI_GPIO 
+{
+	/************************** GPIO RPCs ***************************/
+	rpc set_mode (ModeInputParams) returns (Empty) {}
+	rpc write (SetInputParams) returns (Empty) {}
+	rpc read (PinNumber) returns (GPIO_Level) {}
+	rpc set_pull_up_down(GPIO_PUD) returns (Empty) {}
+	
+	/************************** PWM RPCs ****************************/
+	rpc hardware_PWM(PWM_params) returns (PWM_Status) {}
+	rpc PWM_InputInit (PWM_Pin) returns (Empty) {}
+	rpc PWM_GetDutyCycle (PWM_Pin) returns (Reading) {}
+	rpc PWM_GetFrequency (PWM_Pin) returns (Reading) {}
+	
+	/************************** Serial RPCs ****************************/
+	rpc serial_open (SerialOpenParams) returns (SerialHandleMessage) {}
+	rpc serial_close (SerialHandleMessage) returns (Empty) {}
+	rpc serial_read_byte (SerialHandleMessage) returns (SerialByte) {}
+	rpc serial_write_byte (SerialWriteByteParams) returns (Empty) {}
+	rpc serial_write(SerialWriteParams) returns (Empty) {}
+	rpc serial_data_available (SerialHandleMessage) returns (NumberofBytes) {}
+	rpc stop (Empty) returns (Empty) {}
+	
+	
+}
+

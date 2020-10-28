@@ -1,0 +1,25 @@
+A java tool for socket testing. It can create both TCP and UDP client or server.
+It can be used to test any server or client that uses TCP or UDP protocol to communicate.
+http://sockettest.sourceforge.net/
+
+---------------------------------------------------------------------------------------------------------------------------
+What is CANoe? 
+https://www.youtube.com/watch?v=vWfvNN2Vj_0
+
+---------------------------------------------------------------------------------------------------------------------------
+Setting up the RaspbianOS and enabling Wifi & SSH:
+https://www.youtube.com/watch?v=Z2Pjy7zpWZk
+https://www.youtube.com/watch?v=JduFutbcBmE
+
+---------------------------------------------------------------------------------------------------------------------------
+RPI GPIO Driver samples:
+https://elinux.org/RPi_GPIO_Code_Samples
+
+Library we used:
+The pigpio library for RPi4 >> http://abyz.me.uk/rpi/pigpio/index.html#Type_3
+
+---------------------------------------------------------------------------------------------------------------------------
+Configuring Static IP on Rpi4:
+https://www.ionos.com/digitalguide/server/configuration/provide-raspberry-pi-with-a-static-ip-address/
+
+---------------------------------------------------------------------------------------------------------------------------
